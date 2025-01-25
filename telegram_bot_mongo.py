@@ -12,11 +12,11 @@ from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
-from flask import Flask, request, jsonify
+# from flask import Flask, request, jsonify
 
 
 dotenv.load_dotenv()
-app = Flask(__name__)
+# app = Flask(__name__)
 
 # MongoDB setup
 uri = os.getenv("MONGO_URI")
@@ -501,25 +501,25 @@ def main():
     application.run_polling(allowed_updates=Update.ALL_TYPES)
 
 
-@app.route('/health', methods=['GET'])
-def health():
-    return jsonify({"status": "ok"})
+# @app.route('/health', methods=['GET'])
+# def health():
+#     return jsonify({"status": "ok"})
 
-start = False
-@app.route('/start', methods=['GET'])
-def start_bot():
-    global start
-    if start:
-        return jsonify({"status": "Bot already started"})
-    start = True
-    while start:
-        main()
+# start = False
+# @app.route('/start', methods=['GET'])
+# def start_bot():
+#     global start
+#     if start:
+#         return jsonify({"status": "Bot already started"})
+#     start = True
+#     while start:
+#         main()
         
-@app.route('/stop', methods=['GET'])
-def stop_bot():
-    global start
-    start = False
-    return jsonify({"status": "ok"})
+# @app.route('/stop', methods=['GET'])
+# def stop_bot():
+#     global start
+#     start = False
+#     return jsonify({"status": "ok"})
 
 if __name__ == "__main__":
     main()
